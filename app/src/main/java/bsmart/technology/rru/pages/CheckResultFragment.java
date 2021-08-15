@@ -191,6 +191,13 @@ public class CheckResultFragment extends BaseFragment {
                                 intent.putExtra("flag","valid");
                             }
 
+                            String v_country_name = "";
+
+                            if(account.has("v_country_name") && !account.get("v_country_name").isJsonNull()){
+                                v_country_name = account.get("v_country_name").getAsString();
+                            }
+                            intent.putExtra("v_country_name",v_country_name);
+
                             String v_people_nationalid = "";
                             if (!account.get("v_people_nationalid").isJsonNull()){
                                 v_people_nationalid = account.get("v_people_nationalid").getAsString();
