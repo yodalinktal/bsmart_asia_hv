@@ -1,23 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<!--  <color name="colorPrimary">#294FE9</color>-->
-<!--  <color name="colorPrimaryDark">#294FE9</color>-->
-<!--  <color name="colorAccent">#294FE9</color>-->
+  <!--  <color name="colorPrimary">#294FE9</color>-->
+  <!--  <color name="colorPrimaryDark">#294FE9</color>-->
+  <!--  <color name="colorAccent">#294FE9</color>-->
   <color name="colorPrimary">#294FE9</color>
   <color name="colorPrimaryDark">#294FE9</color>
   <color name="colorAccent">#294FE9</color>
-    <color name="colorGrey">#666666</color>
+  <color name="colorWarning">#F24C1A</color>
+  <color name="colorGrey">#666666</color>
+  <color name="colorGreen">#228B22</color>
+  <color name="colorBtnGreen">#666666</color>
+  <color name="colorRed">#FFB3B3</color>
+  <color name="colorPureRed">#FF4500</color>
 
 
-    <color name="white">#FFFFFF</color>
+  <color name="white">#FFFFFF</color>
   <color name="background">#FFFFFF</color>
   <color name="transparent">#00000000</color>
 
-    <color name="textTitle">#242424</color>
-    <color name="textTitleSecond">#424242</color>
-    <color name="textCommentSecond">#9a9a9a</color>
+  <color name="textBlue">#0033FF</color>
+  <color name="textTitle">#242424</color>
+  <color name="textBlack">#000000</color>
+  <color name="textTitleSecond">#424242</color>
+  <color name="textComment">#6c6c6c</color>
+  <color name="textCommentSecond">#9a9a9a</color>
 
   <color name="bgDivider">#e5e5e5</color>
+  <color name="bgDivider2">#242424</color>
+  <color name="grayPressed">#f6f6f6</color>
+  <color name="transparentSelected">#33000000</color>
 
 
 </resources>

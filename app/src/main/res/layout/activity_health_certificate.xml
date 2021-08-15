@@ -1,0 +1,557 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical">
+
+    <bsmart.technology.rru.base.utils.HeaderView
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/toolbarHeight">
+
+    </bsmart.technology.rru.base.utils.HeaderView>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/resultLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="6dp"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <LinearLayout
+                android:id="@+id/localHeadTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_marginLeft="4dp"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:textColor="#AAAAAA"
+                    android:text="CAP 242"
+                    />
+
+
+                <TextView
+                    android:layout_weight="2"
+                    android:layout_marginLeft="30dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textColor="#AAAAAA"
+                    android:text="Public Health Revised"
+                    />
+
+                <TextView
+                    android:layout_marginRight="4dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#AAAAAA"
+                    android:text="2020"
+                    />
+
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/localBand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textStyle="bold"
+                android:textSize="12dp"
+                android:letterSpacing="0.18"
+                android:textColor="@color/textBlack"
+                android:text="certificate no:"/>
+
+            <ImageView
+                android:id="@+id/virusLogo"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/eac"/>
+
+            <TextView
+
+                android:id="@+id/certificateTitle"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/textBlack"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_gravity="center_horizontal"
+                android:text="ATTESTATION OF COVID-19 TESTING"/>
+
+            <TextView
+                android:id="@+id/validDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textStyle="bold"
+                android:visibility="gone"
+                android:textSize="12dp"
+                android:textColor="@color/textComment"
+                android:text="Valid till"/>
+
+
+            <TextView
+                android:id="@+id/certificate"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:textStyle="bold"
+                android:textSize="12dp"
+                android:letterSpacing="0.18"
+                android:textColor="@color/textBlack"
+                android:text="certificate no:333333"/>
+
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/localTitle"
+                android:layout_width="220dp"
+                android:layout_marginTop="8dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:textColor="#00B0F0"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:layout_gravity="center_horizontal"
+                android:text="REPUBLIC OF KENYA MINISTRY OF HEALTH"/>
+
+            <TextView
+                android:id="@+id/content1"
+                android:visibility="gone"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:gravity="center"
+                android:textSize="12sp"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+<!--            <LinearLayout-->
+<!--                android:orientation="horizontal"-->
+<!--                android:layout_marginLeft="10dp"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content">-->
+
+<!--                <LinearLayout-->
+<!--                    android:orientation="vertical"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content">-->
+<!--                    <TextView-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:textSize="8sp"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:textColor="#000000"-->
+<!--                        android:text="PATIENT NAME"/>-->
+
+<!--                    <TextView-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:textSize="8sp"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:textColor="#000000"-->
+<!--                        android:text="LAB ID/CLINIC NAME"/>-->
+<!--                </LinearLayout>-->
+
+<!--                <LinearLayout-->
+<!--                    android:orientation="vertical"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content">-->
+<!--                    <TextView-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:id="@+id/_patientName"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:textSize="8sp"-->
+<!--                        android:text="PATIENT NAME:"/>-->
+
+<!--                    <TextView-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:id="@+id/_clinicName"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:textSize="8sp"-->
+<!--                        android:text="CLINC NAME:"/>-->
+<!--                </LinearLayout>-->
+
+<!--            </LinearLayout>-->
+
+            <LinearLayout
+                android:layout_marginTop="14dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="9sp"
+                        android:textStyle="bold"
+                        android:textColor="#000000"
+                        android:text="PATIENT NAME"/>
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="9sp"
+                        android:layout_marginTop="2dp"
+                        android:textStyle="bold"
+                        android:textColor="#000000"
+                        android:text="LAB ID/CLINIC NAME"/>
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:layout_marginTop="2dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="9sp"
+                        android:textStyle="bold"
+                        android:textColor="#000000"
+                        android:text="GENDER"/>
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:layout_marginTop="2dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="9sp"
+                        android:textStyle="bold"
+                        android:textColor="#000000"
+                        android:text="NATIONALITY"/>
+
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="9sp"
+                        android:layout_marginTop="2dp"
+                        android:textStyle="bold"
+                        android:textColor="#000000"
+                        android:text="TEST RESULT"/>
+
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="9sp"
+                        android:textStyle="bold"
+                        android:textColor="#000000"
+                        android:text="TEST TYPE"/>
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:id="@+id/_patientName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="9sp"
+                        android:text="PATIENT NAME:"/>
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:id="@+id/_clinicName"
+                        android:layout_marginTop="2dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="9sp"
+                        android:text="CLINC NAME:"/>
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:id="@+id/zone1"
+                            android:layout_alignParentLeft="true"
+                            android:orientation="vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_weight="1"
+                                android:layout_marginTop="2dp"
+                                android:id="@+id/_gender"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="9sp"
+                                android:text="GENDER:"/>
+
+                            <TextView
+                                android:layout_weight="1"
+                                android:id="@+id/_nationality"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="9sp"
+                                android:layout_marginTop="2dp"
+                                android:text="NATIONALITY:"/>
+
+                            <TextView
+                                android:layout_weight="1"
+                                android:id="@+id/_testResult"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="9sp"
+                                android:layout_marginTop="2dp"
+                                android:text="TEST RESULT:"/>
+
+                            <TextView
+                                android:layout_weight="1"
+                                android:id="@+id/_testType"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="9sp"
+                                android:layout_marginTop="2dp"
+                                android:text="TEST TYPE:"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_marginLeft="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:layout_weight="1"
+                                    android:layout_marginTop="2dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="9sp"
+                                    android:textStyle="bold"
+                                    android:textColor="#000000"
+                                    android:text="PASSPORT/ID"/>
+
+                                <TextView
+                                    android:layout_weight="1"
+                                    android:layout_marginTop="2dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="9sp"
+                                    android:textStyle="bold"
+                                    android:textColor="#000000"
+                                    android:text="COLLECTION DATE"/>
+
+                                <TextView
+                                    android:layout_weight="1"
+                                    android:layout_marginTop="2dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="9sp"
+                                    android:textStyle="bold"
+                                    android:textColor="#000000"
+                                    android:text="TEST RECORDED DATE"/>
+
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:layout_weight="1"
+                                    android:layout_marginTop="2dp"
+                                    android:id="@+id/_passport"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="9sp"
+                                    android:text="PASSPORT/ID:"/>
+
+                                <TextView
+                                    android:layout_weight="1"
+                                    android:layout_marginTop="2dp"
+                                    android:id="@+id/_collectionDate"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="9sp"
+                                    android:text="COLLECTION DATE:"/>
+
+                                <TextView
+                                    android:layout_weight="1"
+                                    android:layout_marginTop="2dp"
+                                    android:id="@+id/_testRecordedDate"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="9sp"
+                                    android:text="TEST RECORDED DATE:"/>
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/certificateQRCode"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:layout_marginTop="26dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/eac"/>
+
+            <TextView
+                android:id="@+id/content2"
+                android:visibility="gone"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_gravity="center_horizontal"
+                android:text="This attestation is issued in accordance with Public Health Act Cap 242 Laws of Kenya and the applicable Rules and Regulations for Prevention and Suppression of Infectious Diseases (Prevention, Control and Suppression of COVID-19) Rules, 2020 (section 6 &#038; 7)."/>
+
+            <TextView
+                android:id="@+id/content3"
+                android:layout_marginTop="12dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="@color/colorPureRed"
+                android:layout_gravity="center_vertical|end"
+                android:text="@string/page_certificate_content3"/>
+
+            <TextView
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textStyle="bold"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:text="Issuing Officer"/>
+
+            <TextView
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                android:text="Official Stamp"/>
+
+
+            <ImageView
+                android:id="@+id/covid_flag"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/covid_expired"
+                android:layout_width="100dp"
+                android:layout_height="100dp"/>
+
+            <RelativeLayout
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/doctor_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:text="Dr Fred Wejuli"/>
+
+                <ImageView
+                    android:visibility="invisible"
+                    android:layout_width="82dp"
+                    android:layout_height="36dp"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/sign"/>
+
+            </RelativeLayout>
+
+
+
+
+            <LinearLayout
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:text="Principal Doctor"/>
+
+                <TextView
+                    android:id="@+id/stampDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:text="13/05/2020"/>
+            </LinearLayout>
+
+            <ImageView
+                android:visibility="gone"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="-130dp"
+                android:layout_marginRight="30dp"
+                android:layout_gravity="right"
+                android:src="@drawable/stamp"/>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

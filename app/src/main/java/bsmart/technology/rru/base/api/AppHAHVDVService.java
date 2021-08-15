@@ -32,4 +32,8 @@ public interface AppHAHVDVService {
     @POST("mco/v2/scan/logger")
     Observable<Response<JsonObject>> scanLogger(@FieldMap Map<String, Object> meta);
 
+    @FormUrlEncoded
+    @POST("mco/app/driver/health/detail")
+    Observable<Response<JsonObject>> accountHealthDetail(@FieldMap Map<String, String> meta);
+
 }

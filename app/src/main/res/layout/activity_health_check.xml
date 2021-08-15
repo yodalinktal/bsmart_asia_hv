@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f5f5f5"
+    android:orientation="vertical">
+
+    <bsmart.technology.rru.base.utils.HeaderView
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/toolbarHeight">
+
+    </bsmart.technology.rru.base.utils.HeaderView>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/resultLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Driver ID"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:textColor="@color/textTitle"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/bookId"
+                    style="@style/CommonInputStyle" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:text="Purposes :"
+                    android:textColor="@color/textTitle"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/spinner1"
+                    style="@style/CommonInputStyle"
+                    android:text="Local" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:text="Driver Name "
+                    android:textColor="@color/textTitle"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/fullName"
+                    style="@style/CommonInputStyle" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:text="ID/Passport "
+                    android:textColor="@color/textTitle"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/passport"
+                    style="@style/CommonInputStyle" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:text="Temperature in degree C"
+                    android:textColor="@color/textTitle"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/temperture"
+                    style="@style/CommonInputStyle"
+                    android:hint="36.9" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:text="Covid-19 Result 1 "
+                    android:textColor="@color/textTitle"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/test1Result"
+                    style="@style/CommonInputStyle"
+                    android:hint="Negative" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:text="Covid-19 Result 2 "
+                    android:textColor="@color/textTitle"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/test2Result"
+                    style="@style/CommonInputStyle"
+                    android:hint="Negative" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Health Declaration "
+                    android:textColor="@color/textTitle"
+                    android:textSize="13sp" />
+
+                <CheckBox
+                    android:id="@+id/healthDec"
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:textColor="@color/textTitleSecond"
+                    android:textSize="@dimen/sp_13"
+                    android:enabled="false"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="20dp"
+                    android:text="Yes" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:text="Remarks"
+                    android:textColor="@color/textTitle"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/remark"
+                    style="@style/CommonInputStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:hint="Remarks"
+                    android:lines="3"
+                    android:maxLength="250"
+                    android:singleLine="false" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvFailed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Covid-19 tested positive! Please contact Supervisor for further action! "
+                android:textColor="@color/colorWarning"
+                android:textSize="14sp"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/tvCertificateBtn"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="16dp"
+                android:background="@drawable/login_button"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="View Health Certificate"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvVaccinationBtn"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="16dp"
+                android:background="@drawable/login_button"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="View Vaccinate Certificate"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:visibility="gone" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
