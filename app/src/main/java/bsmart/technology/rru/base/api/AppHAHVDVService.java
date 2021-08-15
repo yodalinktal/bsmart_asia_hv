@@ -16,7 +16,7 @@ import rx.Observable;
 
 /**
  * For HA API URL
- * HOST: https://taapp.eacpass.eac.int
+ * HOST: http://18.136.103.132/
  */
 public interface AppHAHVDVService {
 

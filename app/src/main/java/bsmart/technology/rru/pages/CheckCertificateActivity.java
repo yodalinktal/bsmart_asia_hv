@@ -190,7 +190,7 @@ public class CheckCertificateActivity extends BaseActivity {
             content2.setVisibility(View.GONE);
             localHeadTitle.setVisibility(View.GONE);
             localBand.setVisibility(View.GONE);
-            certificateTitle.setText("MY COVID-19 TESTING CERTIFICATE");
+            certificateTitle.setText("EAC COVID-19 TESTING CERTIFICATE");
             Typeface certificate_typeface = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Bold.ttf");
             certificateTitle.setTypeface(certificate_typeface);
         }

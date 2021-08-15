@@ -136,6 +136,8 @@ public class CheckResultFragment extends BaseFragment {
 
     private String personalInfo;
 
+    private boolean isVaccinated = false;
+
     private String posted_at;
 
     private View rootView;
@@ -152,7 +154,9 @@ public class CheckResultFragment extends BaseFragment {
         });
         headerView.setRightCustomView(customRightView);
 
-        headerView.setTitle("Health Status");
+        String countryCode = ProfileUtils.getLoginCountryCode();
+        String clinicCode = ProfileUtils.getLoginClinicCode();
+        headerView.setTitle("Health Status("+countryCode+","+clinicCode+")");
 
         tvCertificateBtn.setOnClickListener(view->{
 
@@ -230,8 +234,9 @@ public class CheckResultFragment extends BaseFragment {
                                 }else{
                                     intent.putExtra("gender","");
                                 }
-
+                                System.out.println(">>>rid:"+t[2]);
                                 intent.putExtra("testType",account.get("str_covid_test_type").getAsString());
+                                System.out.println(">>>type:"+account.get("str_covid_test_type").getAsString());
                                 intent.putExtra("testCollectedDate",account.get("d_update_time").getAsString());
                                 if (!account.get("d_update_time").isJsonNull()){
                                     String testResult = "";
@@ -387,6 +392,8 @@ public class CheckResultFragment extends BaseFragment {
      * 跳转到扫码界面扫码
      */
     private void goScan() {
+        tvCertificateBtn.setVisibility(View.GONE);
+        tvVaccinationBtn.setVisibility(View.GONE);
         Intent intent = new Intent(getActivity(), CaptureActivity.class);
         getActivity().startActivityForResult(intent, REQUEST_CODE_SCAN);
     }
@@ -599,6 +606,13 @@ public class CheckResultFragment extends BaseFragment {
                 }
                 case 3: {
                     reason.setText(txts[2]);
+                    isVaccinated = false;
+                    String vaccination[] = txts[2].split("\\|");
+                    if (vaccination.length>=3){
+                        if (vaccination[2].equals("2")){
+                            isVaccinated = true;
+                        }
+                    }
                 }
                 case 2: {
                     personalInfo = txts[1];
@@ -676,9 +690,20 @@ public class CheckResultFragment extends BaseFragment {
                     tvFailed.setVisibility(View.GONE);
                 }
             }else{
-                tvCertificateBtn.setVisibility(View.GONE);
+
+                tvCertificateBtn.setVisibility(View.VISIBLE);
                 tvFailed.setVisibility(View.VISIBLE);
                 tvFailed.setText("Covid-19 Attestation Certificate has expired! Please contact Health Supervisor for further action!");
+            }
+
+            if (isVaccinated){
+                tvVaccinationBtn.setVisibility(View.VISIBLE);
+                tvVaccinationBtn.setBackgroundResource(R.color.colorGreen);
+                tvVaccinationBtn.setClickable(true);
+            }else{
+                tvVaccinationBtn.setVisibility(View.VISIBLE);
+                tvVaccinationBtn.setBackgroundResource(R.color.colorBtnGreen);
+                tvVaccinationBtn.setClickable(false);
             }
 
 

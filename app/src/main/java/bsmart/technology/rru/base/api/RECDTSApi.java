@@ -12,7 +12,6 @@ public class RECDTSApi {
     }
     private static OkHttpClient okHttpClient;
     private static AppHAHVDVService appHAHVDVService;
-    private static AppRECDTS_HAHVDVService appRECDTS_hahvdvService;
 
     static {
         okHttpClient = new OkHttpClient.Builder()
@@ -28,25 +27,12 @@ public class RECDTSApi {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build().create(AppHAHVDVService.class);
 
-        appRECDTS_hahvdvService =  new Retrofit.Builder()
-                .baseUrl(base_recdts_ha_hv_dv_Url())
-                .client(okHttpClient)
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build().create(AppRECDTS_HAHVDVService.class);
 
     }
 
     public static AppHAHVDVService getAppHAHVDVService () { return  appHAHVDVService ;}
 
-    public static AppRECDTS_HAHVDVService getAppRECDTS_hahvdvService() {
-        return appRECDTS_hahvdvService;
-    }
-
     public static String base_ha_hv_dv_Url() {
-        return "https://taapp.eacpass.eac.int/api/";
-    }
-    public static String base_recdts_ha_hv_dv_Url() {
-        return "https://app.recdts.eac.int/api/";
+        return "http://18.136.103.132/api/";
     }
 }
