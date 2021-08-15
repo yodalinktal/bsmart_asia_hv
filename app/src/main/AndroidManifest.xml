@@ -37,7 +37,6 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAhWiSlGDAR8juuerHDrgGmu1uR6MJskcY" />
 
-        <activity android:name=".pages.HAActivity" />
         <activity
             android:name=".pages.LoginActivity"
             android:windowSoftInputMode="adjustResize">
@@ -46,6 +45,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".pages.HVActivity"></activity>
+        <activity android:name=".pages.CheckCertificateActivity"></activity>
+        <activity android:name=".pages.CheckVaccinationActivity"></activity>
 
         <meta-data
             android:name="io.fabric.ApiKey"

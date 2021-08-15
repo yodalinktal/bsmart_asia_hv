@@ -14,5 +14,6 @@
     <string name="page_login_input_hint_phone">Nambari ya simu</string>
     <string name="page_login_input_hint_confirm_phone">Thibitisha nambari ya simu</string>
     <string name="page_login_btn_login">Ingia</string>
+    <string name="page_certificate_content3">Ushuhuda huu hauhakikishi dhidi ya maambukizo ya siku za usoni na kwa hivyo lazima uzingatie viwango vya hali ya juu zaidi vya afya pamoja na kunawa mikono mara kwa mara na utumiaji wa maski ya uso wakati wote.</string>
 
 </resources>

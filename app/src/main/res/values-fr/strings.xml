@@ -14,5 +14,6 @@
     <string name="page_login_input_hint_phone">Numéro de téléphone</string>
     <string name="page_login_input_hint_confirm_phone">Confirmer le numéro de téléphone</string>
     <string name="page_login_btn_login">S\'identifier</string>
+    <string name="page_certificate_content3">Cette attestation ne garantit pas contre les infections futures et vous devez donc respecter les normes d\'hygiène les plus élevées, y compris le lavage régulier des mains et l\'utilisation d\'un masque facial à tout moment.</string>
 
 </resources>

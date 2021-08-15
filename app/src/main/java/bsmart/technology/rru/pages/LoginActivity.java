@@ -95,7 +95,7 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void openMainActivity() {
-        Intent i = new Intent(this, HAActivity.class);
+        Intent i = new Intent(this, HVActivity.class);
         startActivity(i);
     }
 

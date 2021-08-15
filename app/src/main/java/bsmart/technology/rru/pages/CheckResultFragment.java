@@ -2,8 +2,11 @@ package bsmart.technology.rru.pages;
 
 import android.Manifest;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -29,6 +32,7 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 import bsmart.technology.rru.R;
 import bsmart.technology.rru.base.App;
@@ -39,6 +43,7 @@ import bsmart.technology.rru.base.api.RECDTSApi;
 import bsmart.technology.rru.base.utils.BSmartUtil;
 import bsmart.technology.rru.base.utils.ChannelUtil;
 import bsmart.technology.rru.base.utils.HeaderView;
+import bsmart.technology.rru.base.utils.ProfileUtils;
 import bsmart.technology.rru.base.utils.Utils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -136,8 +141,10 @@ public class CheckResultFragment extends BaseFragment {
     private View rootView;
     Unbinder unbinder;
 
+    private ConnectivityManager connectivityManager;//用于判断是否有网络
+
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.activity_health_check, container, false);
+        rootView = inflater.inflate(R.layout.activity_health_v2_check, container, false);
         unbinder = ButterKnife.bind(this, rootView);
         View customRightView = LayoutInflater.from(getContext()).inflate(R.layout.action__health_right, null);
         customRightView.findViewById(R.id.flRefresh).setOnClickListener(v -> {
@@ -419,66 +426,106 @@ public class CheckResultFragment extends BaseFragment {
         }
     }
 
-    private void judgeQRCode(String text){
 
+    private void judgeQRCode(String text){
         if (TextUtils.isEmpty(text)){
-            ToastUtils.showLong("invalid scan result.");
+            ToastUtils.showLong("Scan result is empty.");
         }
+
+        new Thread(scanLoggerWorker).start();
+
         String[] result = text.split(":");
         String channel = result[0];
-        if (channel.contains(ChannelUtil.channel_eacpass_value)
-                || channel.contains(ChannelUtil.channel_recdts_value)){
+        Log.i("BarCodeFragment", "scan channel:" + channel);
 
-            //请求网络获得加密后的内容
-            String content = result[1];
+        if (isAESHeader(channel)){
+            if(!hasNetwork()){
+                ToastUtils.showLong("Please check if the mobile device network is available!");
+                return;
+            }
 
+            //Request Remote Server Decode AES QRCode
             JSONObject bodyJson = new JSONObject();
             try {
                 bodyJson.put("qrCode",text);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+            ProgressDialog progressDialog = new ProgressDialog(getContext());
+            progressDialog.setMessage("Parsing... Please wait.");
+            progressDialog.show();
             String strEntity = bodyJson.toString();
             System.out.println("strEntity:"+strEntity);
             RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json;charset=UTF-8"),strEntity);
             RECDTSApi.getAppHAHVDVService().parseCode(body)
                     .compose(new NetTransformer<>(JsonObject.class))
                     .subscribe(new NetSubscriber<>(bean -> {
+                        progressDialog.dismiss();
                         System.out.println("bean:"+bean.toString());
                         if (bean.has("qrCode")){
                             String realCode = bean.get("qrCode").getAsString();
                             showResult(realCode);
+
                         }else{
-                            ToastUtils.showLong("invalid qrCode.");
+                            ToastUtils.showLong("Parse QRCode Failed.");
+
                         }
 
                     }, e -> {
                         ToastUtils.showLong(e.getMessage());
+                        progressDialog.dismiss();
                     }));
 
         }else{
             showResult(text);
         }
-
-
     }
 
-    private boolean correctChannel(String channel){
-
-        if (TextUtils.isEmpty(channel)){
+    private boolean hasNetwork(){
+        connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo info = connectivityManager.getActiveNetworkInfo();
+        if (null != info) {
+            return true;
+        }else{
             return false;
         }
-
-        if (channel.equals(ChannelUtil.channel_eacpass_value)
-                || channel.equals(ChannelUtil.channel_recdts_value)){
-            return true;
-        }
-        return false;
     }
+
+    private boolean isAESHeader(String channel){
+        Pattern p1 = Pattern.compile("^"+ChannelUtil.channel_eacpass_value+"\\d+");
+        Pattern p2 = Pattern.compile("^"+ChannelUtil.channel_eacpass_value.toLowerCase()+"\\d+");
+        boolean b1 = p1.matcher(channel).matches();
+        boolean b2 = p2.matcher(channel).matches();
+        return b1 || b2;
+    }
+
+    private final Runnable scanLoggerWorker = new Runnable() {
+
+        @Override
+        public void run() {
+            Map<String, Object> requestData = new HashMap<>();
+            String countryCode = ProfileUtils.getLoginCountryCode();
+            String clinicCode = ProfileUtils.getLoginClinicCode();
+            requestData.put("countryCode", countryCode);
+            requestData.put("clinicCode", clinicCode);
+            RECDTSApi.getAppHAHVDVService().scanLogger(requestData)
+                    .compose(new NetTransformer<>(JsonObject.class))
+                    .subscribe(new NetSubscriber<>(bean -> {
+                        System.out.println("scanLogger:"+bean.toString());
+
+                    }, e -> {
+                        System.out.println("scanLogger:"+e.getMessage());
+                    }));
+
+        }
+    };
 
     private void showResult(String text) {
         String[] result = text.split(";");
-        if (text.isEmpty() || result.length < 2 || !(correctChannel(result[0]))) {
+        if (result.length < 2 || !(result[0].equals(ChannelUtil.channel_recdts_value)
+                || result[0].equals(ChannelUtil.channel_eacpass_value)
+                || result[0].equals(ChannelUtil.channel_eacpass_value.toLowerCase())
+        )) {
             ToastUtils.showShort("Invalid QRCode!");
             return;
         } else {
