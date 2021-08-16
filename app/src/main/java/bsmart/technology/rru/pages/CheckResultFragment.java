@@ -40,9 +40,12 @@ import bsmart.technology.rru.base.BaseFragment;
 import bsmart.technology.rru.base.api.NetSubscriber;
 import bsmart.technology.rru.base.api.NetTransformer;
 import bsmart.technology.rru.base.api.RECDTSApi;
+import bsmart.technology.rru.base.api.bean.COVID_19_Bean;
+import bsmart.technology.rru.base.api.bean.Vaccination_Bean;
 import bsmart.technology.rru.base.utils.BSmartUtil;
 import bsmart.technology.rru.base.utils.ChannelUtil;
 import bsmart.technology.rru.base.utils.HeaderView;
+import bsmart.technology.rru.base.utils.ParseUtils;
 import bsmart.technology.rru.base.utils.ProfileUtils;
 import bsmart.technology.rru.base.utils.Utils;
 import butterknife.BindView;
@@ -135,6 +138,7 @@ public class CheckResultFragment extends BaseFragment {
     View resultLayout;
 
     private String personalInfo;
+    private String c_people_rid;
 
     private boolean isVaccinated = false;
 
@@ -160,14 +164,117 @@ public class CheckResultFragment extends BaseFragment {
 
         tvCertificateBtn.setOnClickListener(view->{
 
-            //这里模拟用户进行登录
-
             ProgressDialog progressDialog = new ProgressDialog(getContext());
             progressDialog.setMessage("Checking... Please wait.");
             progressDialog.show();
             String[] t = personalInfo.split("\\|");
             Map<String, String> requestData = new HashMap<>();
             requestData.put("c_people_rid", t[2]);
+
+            //Get Json Data from API
+            /**
+             * {
+             *     "account": {
+             *         "id": 40314,
+             *         "v_smartdriver_id": "47NKTNTE",
+             *         "v_smartdriver_password": "******",
+             *         "i_people_rid": null,
+             *         "n_account_balance": "0.00",
+             *         "v_taxi_colour": "White",
+             *         "v_taxi_permit": "KCP 905N",
+             *         "v_remarks": null,
+             *         "c_user_group_rid": "6A2BDEFE-1FCD-F76D-1710B2D8F761E0B6",
+             *         "v_created_user": "paito.ronald",
+             *         "d_create_date": "2020-08-30 10:00:44",
+             *         "v_last_update_user": "robert.onyango",
+             *         "d_last_update_date": "2020-09-12 12:15:06",
+             *         "v_smartdriver_name": "PAUL ODHIAMBO OTIENO",
+             *         "v_mobile_no": "+254723784573",
+             *         "i_gender": "0",
+             *         "v_email_address": "info@health.go.ug",
+             *         "v_company_name_others": null,
+             *         "v_taxi_type": null,
+             *         "v_company_name": "HUAYE",
+             *         "v_account_type": null,
+             *         "v_status": "Active",
+             *         "v_bdt_login_id": null,
+             *         "v_taxi_model": "AXOR",
+             *         "c_taxi_group_rid": null,
+             *         "i_officer_region": 313,
+             *         "c_asp_rid": "6A2BDEFE-1FCD-F76D-1710B2D8F761E0B6",
+             *         "c_operator_rid": null,
+             *         "api_token": null,
+             *         "i_people_type": 1,
+             *         "v_people_first_name": "PAUL",
+             *         "v_people_last_name": "ODHIAMBO OTIENO",
+             *         "v_people_email": "info@health.go.ug",
+             *         "v_people_passport": "21853278",
+             *         "i_people_nationality": 639,
+             *         "v_people_nationalid": "21853278",
+             *         "v_mobile1_no": null,
+             *         "v_mobile2_no": null,
+             *         "v_address": null,
+             *         "v_city": "MOMBASA",
+             *         "v_postal": "NA",
+             *         "v_county": "Mombasa",
+             *         "v_district": "Migadini",
+             *         "v_email": null,
+             *         "d_dob": "1979-06-23",
+             *         "i_age": 41,
+             *         "v_nok_first_name": "NORA",
+             *         "v_nok_last_name": "ANYANGO",
+             *         "v_nok_mobile": "+254729287323",
+             *         "v_nok_mobile1": null,
+             *         "v_nok_email": null,
+             *         "v_companypic_first_name": "ZANG",
+             *         "v_companypic_last_name": "ZANG ZANG",
+             *         "v_company_mobile": "+25677888999",
+             *         "v_company_mobile1": null,
+             *         "v_company_email": "NA",
+             *         "c_people_rid": "F2D6F591-7E13-7251-40F7983237269F40",
+             *         "v_country": null,
+             *         "c_parent_rid": null,
+             *         "i_eacpass": null,
+             *         "i_mco_id": 11760,
+             *         "i_covid_result": 0,
+             *         "i_covid_test_type": null,
+             *         "d_covid_test": null,
+             *         "i_body_temp": "36",
+             *         "d_covid_specimen_collect": "2020-09-12 00:00:00",
+             *         "d_update_time": "2021-08-13 15:06:25",
+             *         "d_create_time": "2020-09-12 18:41:14",
+             *         "v_hospital": null,
+             *         "i_clinic_country": 641,          //Lab Name from Country (MCC Code)
+             *         "v_clinic_name": "Malaba POE",   //COVID-19 Test Lab Name
+             *         "i_covid_vaccine": null,
+             *         "i_covid_vaccine_dose_number": 0,
+             *         "v_covid_vaccine_lot_number": null,
+             *         "i_covid_vaccine_type": 0,
+             *         "d_covid_vaccination": null,
+             *         "v_provider_name": "Ministry of Health - Uganda",
+             *         "v_country_name": "Kenya",
+             *         "str_covid_test_type": "PCR",
+             *         "flag": "expired",
+             *         "vaccines": [
+             *             {
+             *                 "i_covid_vaccine_dose_number": 1,
+             *                 "v_covid_vaccine_type": "",
+             *                 "d_covid_vaccination": "",
+             *                 "v_covid_vaccine_facility": "",
+             *                 "v_covid_vaccine_batch_no": ""
+             *             },
+             *             {
+             *                 "i_covid_vaccine_dose_number": 2,
+             *                 "v_covid_vaccine_type": "",
+             *                 "d_covid_vaccination": "",
+             *                 "v_covid_vaccine_facility": "",
+             *                 "v_covid_vaccine_batch_no": ""
+             *             }
+             *         ]
+             *     }
+             * }
+             */
+
 
             RECDTSApi.getAppHAHVDVService().accountHealthDetail(requestData)
                     .compose(new NetTransformer<>(JsonObject.class))
@@ -534,7 +641,115 @@ public class CheckResultFragment extends BaseFragment {
         }
     };
 
+
     private void showResult(String text) {
+        String[] result = text.split(";");
+        if (result.length < 2 || !(result[0].equals(ChannelUtil.channel_recdts_value)
+                || result[0].equals(ChannelUtil.channel_eacpass_value)
+                || result[0].equals(ChannelUtil.channel_eacpass_value.toLowerCase())
+        )) {
+            ToastUtils.showShort("Invalid QRCode!");
+            return;
+        } else {
+            String[] txts = text.trim().split(";");
+            switch (txts.length) {
+                case 24:{
+
+                }
+                case 23: {
+
+                }
+                case 22: {
+
+                }
+                case 21: {
+
+                }
+                case 20: {
+
+                }
+                case 19: {
+
+                }
+                case 18: {
+
+                }
+                case 17: {
+
+                }
+                case 16: {
+
+                }
+                case 15: {
+
+                }
+                case 14: {
+
+                }
+                case 13: {
+
+                }
+                case 12: {
+
+                }
+                case 11: {
+
+                }
+                case 10: {
+
+                }
+                case 9: {
+
+                }
+                case 8: {
+
+                }
+                case 7: {
+
+                }
+                case 6: {
+
+                }
+                case 5: {
+
+                }
+                case 4: {
+
+                }
+                case 3: {
+
+                }
+                case 2: {
+                    personalInfo = txts[1];
+                    String[] t = txts[1].split("\\|");
+                    c_people_rid = t[2];
+
+                }
+            }
+
+            parseHealthDetail(c_people_rid);
+
+        }
+    }
+
+    private void parseHealthDetail(String c_people_rid){
+        Map<String, String> requestData = new HashMap<>();
+        requestData.put("c_people_rid",c_people_rid);
+        RECDTSApi.getAppHAHVDVService().accountHealthDetail(requestData)
+                .compose(new NetTransformer<>(JsonObject.class))
+                .subscribe(new NetSubscriber<>(bean -> {
+
+                    COVID_19_Bean covid_19_bean = ParseUtils.getCOVID_19_Data(bean);
+                    Vaccination_Bean vaccination_bean = ParseUtils.getVaccination_Data(bean);
+
+                    //todo: you can get COVID-19 Data , Vaccination Data,
+
+                }, e -> {
+                    System.out.println("Failed,please check network");
+                }));
+    }
+
+    private void showResult_delete(String text) {
         String[] result = text.split(";");
         if (result.length < 2 || !(result[0].equals(ChannelUtil.channel_recdts_value)
                 || result[0].equals(ChannelUtil.channel_eacpass_value)
