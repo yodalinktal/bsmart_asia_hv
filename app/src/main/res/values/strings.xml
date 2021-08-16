@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">HV</string>
+    <string name="app_name">HV(out bound)</string>
     <string name="page_start_title">Ease travel by connecting to your Covid-19 Test Certificate securely and with total privacy</string>
     <string name="page_text_heart">Share up-to-date EAC Covid-19 Testing Certificate</string>
     <string name="page_text_arrow">Speed through Covid-19 Validation</string>
