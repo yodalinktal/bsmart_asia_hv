@@ -40,12 +40,29 @@ public class ParseUtils {
             covid_19_bean.setV_people_nationalid(account.get("v_people_nationalid").getAsString());
             covid_19_bean.setV_country_name(account.get("v_country_name").getAsString());
 
-            covid_19_bean.setV_clinic_name(account.get("v_clinic_name").getAsString());
-            covid_19_bean.setD_covid_specimen_collect(account.get("d_covid_specimen_collect").getAsString());
-            covid_19_bean.setD_update_time(account.get("d_update_time").getAsString());
-            covid_19_bean.setI_body_temp(account.get("i_body_temp").getAsString());
-            covid_19_bean.setStr_covid_test_type(account.get("str_covid_test_type").getAsString());
-            covid_19_bean.setI_covid_result(account.get("i_covid_result").getAsInt());
+            if (account.has("v_clinic_name") && !account.get("v_clinic_name").isJsonNull()){
+                covid_19_bean.setV_clinic_name(account.get("v_clinic_name").getAsString());
+            }
+
+            if (account.has("d_covid_specimen_collect") && !account.get("d_covid_specimen_collect").isJsonNull()){
+                covid_19_bean.setD_covid_specimen_collect(account.get("d_covid_specimen_collect").getAsString());
+            }
+
+            if (account.has("d_update_time") && !account.get("d_update_time").isJsonNull()){
+                covid_19_bean.setD_update_time(account.get("d_update_time").getAsString());
+            }
+
+            if (account.has("i_body_temp") && !account.get("i_body_temp").isJsonNull()){
+                covid_19_bean.setI_body_temp(account.get("i_body_temp").getAsString());
+            }
+
+            if (account.has("str_covid_test_type") && !account.get("str_covid_test_type").isJsonNull()){
+                covid_19_bean.setStr_covid_test_type(account.get("str_covid_test_type").getAsString());
+            }
+
+            if (account.has("i_covid_result") && !account.get("i_covid_result").isJsonNull()){
+                covid_19_bean.setI_covid_result(account.get("i_covid_result").getAsInt());
+            }
 
 
             return covid_19_bean;
@@ -81,25 +98,36 @@ public class ParseUtils {
             vaccination_bean.setV_country_name(account.get("v_country_name").getAsString());
 
 
-            vaccination_bean.setD_update_time(account.get("d_update_time").getAsString());
-            vaccination_bean.setI_covid_vaccine(account.get("i_covid_vaccine").getAsInt());
-            vaccination_bean.setI_covid_vaccine_dose_number(account.get("i_covid_vaccine_dose_number").getAsInt());
-            vaccination_bean.setD_covid_vaccination(account.get("d_covid_vaccination").getAsString());
-
-            JsonArray jsonarray = account.get("vaccines").getAsJsonArray();
-
-            List<Vaccination_Item_Bean> list = new ArrayList<>();
-            for (int i=0;i<jsonarray.size();i++){
-                JsonElement jsonElement = jsonarray.get(i);
-                JsonObject jsonObject = jsonElement.getAsJsonObject();
-                Vaccination_Item_Bean vaccination_item_bean = new Vaccination_Item_Bean();
-                vaccination_item_bean.setD_covid_vaccination(jsonObject.get("d_covid_vaccination").getAsString());
-                vaccination_item_bean.setI_covid_vaccine_dose_number(jsonObject.get("i_covid_vaccine_dose_number").getAsInt());
-                vaccination_item_bean.setV_covid_vaccine_batch_no(jsonObject.get("v_covid_vaccine_batch_no").getAsString());
-                vaccination_item_bean.setV_covid_vaccine_facility(jsonObject.get("v_covid_vaccine_facility").getAsString());
-                vaccination_item_bean.setV_covid_vaccine_type(jsonObject.get("v_covid_vaccine_type").getAsString());
-                list.add(vaccination_item_bean);
+            if (account.has("d_update_time") && !account.get("d_update_time").isJsonNull()){
+                vaccination_bean.setD_update_time(account.get("d_update_time").getAsString());
             }
+
+            if (account.has("i_covid_vaccine") && !account.get("i_covid_vaccine").isJsonNull()){
+                vaccination_bean.setI_covid_vaccine(account.get("i_covid_vaccine").getAsInt());
+            }
+            if (account.has("i_covid_vaccine_dose_number") && !account.get("i_covid_vaccine_dose_number").isJsonNull()){
+                vaccination_bean.setI_covid_vaccine_dose_number(account.get("i_covid_vaccine_dose_number").getAsInt());
+            }
+            if (account.has("d_covid_vaccination") && !account.get("d_covid_vaccination").isJsonNull()){
+                vaccination_bean.setD_covid_vaccination(account.get("d_covid_vaccination").getAsString());
+            }
+
+            if (account.has("vaccines") && !account.get("vaccines").isJsonNull()){
+                JsonArray jsonarray = account.get("vaccines").getAsJsonArray();
+                List<Vaccination_Item_Bean> list = new ArrayList<>();
+                for (int i=0;i<jsonarray.size();i++){
+                    JsonElement jsonElement = jsonarray.get(i);
+                    JsonObject jsonObject = jsonElement.getAsJsonObject();
+                    Vaccination_Item_Bean vaccination_item_bean = new Vaccination_Item_Bean();
+                    vaccination_item_bean.setD_covid_vaccination(jsonObject.get("d_covid_vaccination").getAsString());
+                    vaccination_item_bean.setI_covid_vaccine_dose_number(jsonObject.get("i_covid_vaccine_dose_number").getAsInt());
+                    vaccination_item_bean.setV_covid_vaccine_batch_no(jsonObject.get("v_covid_vaccine_batch_no").getAsString());
+                    vaccination_item_bean.setV_covid_vaccine_facility(jsonObject.get("v_covid_vaccine_facility").getAsString());
+                    vaccination_item_bean.setV_covid_vaccine_type(jsonObject.get("v_covid_vaccine_type").getAsString());
+                    list.add(vaccination_item_bean);
+                }
+            }
+
             return vaccination_bean;
         }else {
             return null;
